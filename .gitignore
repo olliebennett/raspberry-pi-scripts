@@ -1,0 +1,19 @@
+# # # # # # # # # # # # # # # # # # # #
+# git-ignore for Raspberry Pi Scripts #
+# # # # # # # # # # # # # # # # # # # #
+
+# Python compiled bytecode and DLLs
+*.py[cod]
+
+# Python Cache
+__pycache__
+
+# IntelliJ PyCharm
+.idea
+
+# Private Configuration Files
+olliebennett/config/twitter.py
+
+# Logs and Data Directory
+data/*
+logs/*.log
