@@ -13,8 +13,12 @@ api = Twython(TwitterConfig.CONSUMER_KEY,
 
 def tweet(status):
 
+    if len(status) > 140:
+        Log.warn(Log.TWITTER, "Trimming long tweet (total {0} chars): '{1}'.".format(len(status), status))
+        status = status[:137] + "..."
+
     try:
-        Log.debug(Log.TWITTER, "Updating status: '%s'." % status)
+        Log.info(Log.TWITTER, "Updating status: '{0}' (total {1} chars).".format(status, len(status)))
         api.update_status(status=status)
     except TwythonAuthError as tae:
         Log.error(Log.TWITTER, "Authentication error: " + str(tae))
