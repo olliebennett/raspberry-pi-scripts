@@ -5,7 +5,7 @@ Custom Logging facility.
 import logging
 from time import gmtime, strftime
 import os
-import olliebennett.config.logger as LogConfig
+from olliebennett.config import logger as LogConfig
 
 __author__ = 'Ollie Bennett | http://olliebennett.co.uk/'
 
