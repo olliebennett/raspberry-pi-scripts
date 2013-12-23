@@ -3,8 +3,6 @@ Custom Logging facility.
 """
 
 import logging
-from time import gmtime, strftime
-import os
 from olliebennett.config import logger as LogConfig
 
 __author__ = 'Ollie Bennett | http://olliebennett.co.uk/'
@@ -12,6 +10,7 @@ __author__ = 'Ollie Bennett | http://olliebennett.co.uk/'
 # Available Log Types
 TWITTER = "Twitter"
 TEMPERATURE = "Temperature"
+TORRENT = "Torrent"
 
 # Create loggers (for later use).
 formatter = logging.Formatter(fmt='%(asctime)s %(levelname)-5s %(message)s', datefmt='%Y-%m-%d %I:%M:%S')
@@ -27,6 +26,12 @@ temperature_log.setLevel(logging.DEBUG)
 temperature_fh = logging.FileHandler(LogConfig.LOG_PATH_TEMPERATURE)
 temperature_fh.setFormatter(formatter)  # add formatter to file handler
 temperature_log.addHandler(temperature_fh)  # add file handler to logger
+# Torrent:
+torrent_log = logging.getLogger(TORRENT)
+torrent_log.setLevel(logging.DEBUG)
+torrent_fh = logging.FileHandler(LogConfig.LOG_PATH_TORRENT)
+torrent_fh.setFormatter(formatter)  # add formatter to file handler
+torrent_log.addHandler(torrent_fh)  # add file handler to logger
 
 
 def debug(log_type, log_message):
