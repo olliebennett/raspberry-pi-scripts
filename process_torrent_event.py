@@ -22,7 +22,7 @@ __author__ = 'Ollie Bennett | http://olliebennett.co.uk/'
 recognised_events = ["completed", "added"]
 
 if len(sys.argv) != 5:
-    Log.error(Log.TORRENT, "Invalid arguments supplied (expected {0}): {1}".format(len(sys.argv), "|".join(sys.argv)))
+    Log.error(Log.TORRENT, "Invalid arguments supplied (expected {0}): {1}".format(5, "[" + "][".join(sys.argv) + "]"))
     sys.exit()
 
 event_type = sys.argv[1]
