@@ -5,8 +5,9 @@ import sys
 import olliebennett.logger as Log
 import olliebennett.twitter as Twitter
 
+
 def tweet_cpu_temp():
-    ''' Tweet the temperature of the cpu '''
+    """ Tweet the temperature of the cpu """
     # Get current CPU temperature
     cmd = '/opt/vc/bin/vcgencmd measure_temp'
     line = os.popen(cmd).readline().strip()
