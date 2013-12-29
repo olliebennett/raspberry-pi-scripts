@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <title>
+            {% if title %}
+            Raspberry Pi | {{ title }}
+            {% else %}
+            Raspberry Pi
+            {% endif %}
+        </title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+
+        <style>
+            body {
+                margin-top: 30px;
+            }
+            #shutdown {
+                color: red;
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+        <div class="container">
+
+            <nav class="navbar navbar-default" role="navigation">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Raspberry Pi</a>
+              </div>
+
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                  <li{% if title == 'Torrents' %} class="active"{% endif %}><a href="/torrents">Torrents</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                   <li class="{% if title == 'Shutdown' %}active{% endif %} pull-right"><a href="shutdown" id="shutdown"><i class="fa fa-power-off" alt="Shutdown" title="Shutdown Raspberry Pi"></i></a></li>
+                </ul>
+             </div><!-- /.navbar-collapse -->
+            </nav>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+            <div id="alerts">
+                    {% for category, message in messages %}
+                <div class="alert alert-{{ category }}"><i class="fa fa-{{ category }}"></i> {{ message }}</div>
+                    {% endfor %}
+            </div>
+                {% endif %}
+            {% endwith %}
+
+            <footer>
+                Follow me <a href="http://twitter.com/Ollie_RPi">@Ollie_RPi</a>. Question? Feature request? See my <a href="https://github.com/olliebennett/raspberry-pi-scripts">GitHub</a>!
+            </footer>
+
+        </div><!-- /.container -->
+
+        <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+        <script>
+            // Confirmation upon shutdown.
+            $(function() {
+                $('#shutdown').click(function(e) {
+                    e.preventDefault();
+                    if (window.confirm("Are you sure you want to immediately shut down the Raspberry Pi? All current scripts and processes will cease.")) {
+                        location.href = this.href;
+                    }
+                });
+            });
+        </script>
+
+    </body>
+
+</html>
