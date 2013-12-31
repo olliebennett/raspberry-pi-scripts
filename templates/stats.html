@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Server Statistics</h1>
+
+<table class="table table-bordered table-nonfluid" id="torrent-shared-folder-params">
+    <tr>
+        <th><i class="fa fa-clock-o"></i> Up Time</th>
+        <td>{{ stats.uptime }}</td>
+    </tr>
+    <tr>
+        <th><i class="fa fa-calendar"></i> Time Now</th>
+        <td>{{ stats.time_now }}</td>
+    </tr>
+    <tr>
+        <th><i class="fa fa-bar-chart-o"></i> Load Average</th>
+        <td>{{ stats.load_average }}</td>
+    </tr>
+    <tr>
+        <th><i class="fa fa-{{ stats.server_platform }}"></i> OS / Platform</th>
+        <td>{{ stats.server_platform_full }}</td>
+    </tr>
+    <tr>
+        <th>Python Version</th>
+        <td>{{ stats.python_version }}</td>
+    </tr>
+</table>
+
+{% endblock %}

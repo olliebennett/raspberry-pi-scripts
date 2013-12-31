@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Torrents</h1>
+
+<p>This Raspberry Pi runs a Deluge-based torrent client.</p>
+
+<!--
+<h2>Quick Actions</h2>
+
+<p>
+    <a href="/torrents/pause-all" class="btn btn-default btn-lg" role="button"><i class="fa fa-pause"></i> Pause All</a>
+    <a href="/torrents/resume-all" class="btn btn-default btn-lg" role="button"><i class="fa fa-play"></i> Resume All</a>
+</p>
+-->
+
+<h2>Accessing Deluge</h2>
+<p>Deluge runs a Web-based user interface for adding/removing and otherwise controlling the state of torrents in the system. Open the <a class="webui-link" href="#">Web UI</a>.</p>
+<p>An alternative to the WebUI is to install the Deluge client locally, and connect it to the remote daemon on the Raspberry Pi.</p>
+<ol>
+    <li>Install <a href="http://deluge-torrent.org/">Deluge</a>.</li>
+    <li>Open the Connection Manager</li>
+    <li>Add a new host with the following parameters:
+        <table class="table table-bordered table-nonfluid params-table" id="deluge-params">
+            <tr>
+                <th>Hostname*:</th>
+                <td><input id="torrent-connection-hostname" class="pi-hostname" type="text" disabled value="" /></td>
+            </tr>
+            <tr>
+                <th>Port:</th>
+                <td><input id="torrent-connection-port" type="text" disabled value="" /></td>
+            </tr>
+            <tr>
+                <th>Username:</th>
+                <td><input id="torrent-connection-username" type="text" disabled value="deluge" /></td>
+            </tr>
+            <tr>
+                <th>Password:</th>
+                <td><input id="torrent-connection-password" type="text" disabled value="deluge" /></td>
+            </tr>
+        </table>
+        <p>* The hostname/IP can be replaced by <code>raspberrypi</code> on a local network, assuming <a href="http://en.wikipedia.org/wiki/Bonjour_(software)">Bonjour</a> is installed on your machine.</p>
+    </li>
+</ol>
+
+<h2>Using Downloaded Files</h2>
+
+<p>Access the completed files by accessing the shared folder <a href="/shared-files">as described here</a>. The torrent-related subfolders are:</p>
+<ul>
+    <li><code>/torrents/downloading</code> - partially downloaded files.</li>
+    <li><code>/torrents/completed</code> - completed (typically seeding) files.</li>
+    <li><code>/torrents/watch</code> - a folder monitored by Deluge. Add <code>.torrent</code> files here and they'll be downloaded.</li>
+    <li><code>/torrents/torrent-backups</code> - a store of all previously-added torrent files.</li>
+</ul>
+
+<h2>Other Suggestions</h2>
+
+<ul>
+    <li>Use a tool to add torrents directly from browser to RPi server, such as <a href="https://chrome.google.com/webstore/detail/delugesiphon/gabdloknkpdefdpkkibplcfnkngbidim">DelugeSiphon</a> (chrome) or <a href="https://addons.mozilla.org/en-US/firefox/addon/bittorrent-webui-120685/">BitTorrent WebUI+</a> (firefox).</li>
+</ul>
+
+{% endblock %}

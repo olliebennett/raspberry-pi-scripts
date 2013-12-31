@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Shared Files</h1>
+
+<p>Accessing files on the Raspberry Pi can be done in a couple of ways.</p>
+
+<h2>Samba Share</h2>
+<p>The Raspberry Pi hosts a shared Samba folder across the network, with the following configuration:</p>
+
+<table class="table table-bordered table-nonfluid" id="torrent-shared-folder-params">
+    <tr>
+        <th>Location:</th>
+        <td><input id="torrent-shared-folder-hostname" class="pi-hostname" type="text" disabled value="\\192.168.0.169\shared" /></td>
+    </tr>
+    <tr>
+        <th>Username:</th>
+        <td><input id="torrent-shared-folder-username" type="text" disabled value="shared" /></td>
+    </tr>
+    <tr>
+        <th>Password:</th>
+        <td><input id="torrent-shared-folder-password" type="text" disabled value="shared" /></td>
+    </tr>
+</table>
+<p><i class="fa fa-edit"></i> Note: It's probably a good idea to create a shortcut or favourite for this location in Windows Explorer.</p>
+
+{% endblock %}
