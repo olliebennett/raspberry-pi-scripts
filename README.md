@@ -30,3 +30,14 @@ Scripts created by [Ollie Bennett](https://www.olliebennett.co.uk/) to run on [@
   ```
 
 - Visit the page via [http://raspberrypi/](http://raspberrypi/)!
+
+## Camera Streaming
+
+- Install the `picamera` and OpenCV packages.
+
+  ```bash
+  sudo apt-get install python3-picamera
+  sudo apt-get install python3-opencv
+  ```
+
+- Run the server again as outlined above.

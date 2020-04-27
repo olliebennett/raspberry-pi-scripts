@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Camera</h1>
+
+<img src="{{ url_for('camera_feed') }}" width="640" height="480">
+
+{% endblock %}
