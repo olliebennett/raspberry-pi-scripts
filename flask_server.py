@@ -6,10 +6,7 @@ import platform
 from time import gmtime, strftime
 from datetime import timedelta
 import olliebennett.logger as Log
-import picamera
-import cv2
-import socket
-import io
+from picamera import Camera
 
 app = Flask(__name__)
 
@@ -35,20 +32,16 @@ def route_torrents():
 def route_shared_files():
     return render_template("shared-files.html", title="Shared Files")
 
-vc = cv2.VideoCapture(0)
-def gen():
-   """Video streaming generator function."""
-   while True:
-       rval, frame = vc.read()
-       cv2.imwrite('pic.jpg', frame)
-       yield (b'--frame\r\n'
-              b'Content-Type: image/jpeg\r\n\r\n' + open('pic.jpg', 'rb').read() + b'\r\n')
+def gen(camera):
+    while True:
+        frame = camera.get_frame()
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
 @app.route('/camera_feed')
 def camera_feed():
    """Video streaming route. Put this in the src attribute of an img tag."""
-   return Response(gen(),
-                   mimetype='multipart/x-mixed-replace; boundary=frame')
+   return Response(gen(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 @app.route('/camera')
 def route_camera():
