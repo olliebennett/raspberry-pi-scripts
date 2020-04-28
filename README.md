@@ -17,6 +17,8 @@ Scripts created by [Ollie Bennett](https://www.olliebennett.co.uk/) to run on [@
 
 - Clone this repo with `git clone --recurse-submodules https://github.com/olliebennett/raspberry-pi-scripts.git`
 
+- Change into the directory; `cd raspberry-pi-scripts`
+
 ## Web Server
 
 - Install Flask;
@@ -28,18 +30,17 @@ Scripts created by [Ollie Bennett](https://www.olliebennett.co.uk/) to run on [@
 - Start the server with
 
   ```bash
-  sudo python3 flask_server.py
+  sudo ./flask_server.py
   ```
 
 - Visit the page via [http://raspberrypi/](http://raspberrypi/)!
 
 ## Camera Streaming
 
-
+- Install the `picamera` dependency.
 
   ```bash
   sudo apt-get install python3-picamera
-  sudo apt-get install python3-opencv
   ```
 
 - Run the server again as outlined above.
