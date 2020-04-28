@@ -15,6 +15,8 @@ Scripts created by [Ollie Bennett](https://www.olliebennett.co.uk/) to run on [@
 
 - Enable camera via `sudo raspi-config` -> `Interfacing Options` -> `Camera`.
 
+- Clone this repo with `git clone --recurse-submodules https://github.com/olliebennett/raspberry-pi-scripts.git`
+
 ## Web Server
 
 - Install Flask;
@@ -33,7 +35,7 @@ Scripts created by [Ollie Bennett](https://www.olliebennett.co.uk/) to run on [@
 
 ## Camera Streaming
 
-- Install the `picamera` and OpenCV packages.
+
 
   ```bash
   sudo apt-get install python3-picamera

@@ -1,15 +1,19 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 from flask import Flask, render_template, send_from_directory, flash, Response
+from importlib import import_module
 import os
+import sys
 import platform
 from time import gmtime, strftime
 from datetime import timedelta
 import olliebennett.logger as Log
-from picamera import Camera
+
+# Workaround to import 'flask-video-streaming' submodule (without adding __init__.py)
+sys.path.insert(0, './flask-video-streaming')
+from camera_pi import Camera
 
 app = Flask(__name__)
-
 
 @app.route("/")
 def index():
@@ -33,15 +37,16 @@ def route_shared_files():
     return render_template("shared-files.html", title="Shared Files")
 
 def gen(camera):
+    """Video streaming generator function."""
     while True:
         frame = camera.get_frame()
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
-@app.route('/camera_feed')
-def camera_feed():
-   """Video streaming route. Put this in the src attribute of an img tag."""
-   return Response(gen(), mimetype='multipart/x-mixed-replace; boundary=frame')
+@app.route('/video_feed')
+def video_feed():
+    """Video streaming route. Put this in the src attribute of an img tag."""
+    return Response(gen(Camera()), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 @app.route('/camera')
 def route_camera():
@@ -100,7 +105,7 @@ app.secret_key = '2\x1f\xfb\xf5)7\x13=\r\x85\xdd;\x1fpBx\xce`\xd0\xa7\x86)?\xb4'
 
 if __name__ == "__main__":
     app.debug = True
-    app.run(host='0.0.0.0', port=80)
+    app.run(host='0.0.0.0', port=80, threaded=True)
 
 
 
